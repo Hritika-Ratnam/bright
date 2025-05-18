@@ -4,6 +4,8 @@
 
 A Django-based credit card management system providing RESTful APIs for credit card applications, EMI schedules, loan management, and payments. It uses MongoDB for storage and Celery for asynchronous background tasks.
 
+
+DRIVE LINK: https://drive.google.com/drive/folders/1E7dnAKsa01h85pYvtr4ui2CsQjcaRolf
 ---
 
 ##  Tech Stack
