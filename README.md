@@ -1,40 +1,38 @@
-# Bright Money Assignment 
+# Bright Money Assignment
 
-##  Overview
+## Overview
 
 A Django-based credit card management system providing RESTful APIs for credit card applications, EMI schedules, loan management, and payments. It uses MongoDB for storage and Celery for asynchronous background tasks.
 
+## Video: https://drive.google.com/file/d/1RrFdTwdDC0rPzhSPd_1te0XRbL8F2bM1/view?usp=sharing
 
 DRIVE LINK: https://drive.google.com/drive/folders/1E7dnAKsa01h85pYvtr4ui2CsQjcaRolf
----
 
-##  Tech Stack
+## Tech Stack
 
-- Python 3.11  
-- Django 3.2.8  
-- MongoDB (via Djongo)  
-- Django REST Framework  
-- Celery for async task handling  
-
----
-
-##  Features
-
-- ✅ User registration with credit score calculation  
-- ✅ Credit card loan application & eligibility check  
-- ✅ EMI calculation (with principal + interest)  
-- ✅ Payment handling with validations  
-- ✅ Loan statement generation (past + upcoming)  
-- ✅ Billing system with min due, APR, and due date  
-- ✅ Daily cron via Celery for billing cycle management  
+- Python 3.11
+- Django 3.2.8
+- MongoDB (via Djongo)
+- Django REST Framework
+- Celery for async task handling
 
 ---
 
+## Features
 
+- ✅ User registration with credit score calculation
+- ✅ Credit card loan application & eligibility check
+- ✅ EMI calculation (with principal + interest)
+- ✅ Payment handling with validations
+- ✅ Loan statement generation (past + upcoming)
+- ✅ Billing system with min due, APR, and due date
+- ✅ Daily cron via Celery for billing cycle management
+
+---
 
 ## Setup & Run (Single Terminal)
 
-`````bash
+```bash
 # 1. Clone the repository
 git clone <repository-url>
 cd Django_Assign
@@ -73,14 +71,16 @@ gnome-terminal --tab -- bash -c "celery -A credit_card_system worker --loglevel=
 # For Windows users, open two terminals manually:
 # Terminal 1: python manage.py runserver
 # Terminal 2: celery -A credit_card_system worker --loglevel=info
-`````
+```
 
 ---
 
-##  API Endpoints
+## API Endpoints
 
-###  Register User  
+### Register User
+
 `POST /api/users/`
+
 ```json
 {
   "aadhar_id": "123456789012",
@@ -89,8 +89,10 @@ gnome-terminal --tab -- bash -c "celery -A credit_card_system worker --loglevel=
 }
 ```
 
-###  Apply for Loan  
+### Apply for Loan
+
 `POST /api/apply-loan/`
+
 ```json
 {
   "unique_user_id": "user-uuid",
@@ -102,8 +104,10 @@ gnome-terminal --tab -- bash -c "celery -A credit_card_system worker --loglevel=
 }
 ```
 
-###  Make Payment  
+### Make Payment
+
 `POST /api/make-payment/`
+
 ```json
 {
   "loan_id": "loan-uuid",
@@ -111,19 +115,22 @@ gnome-terminal --tab -- bash -c "celery -A credit_card_system worker --loglevel=
 }
 ```
 
-###  View Statement  
+### View Statement
+
 `GET /api/get-statement/<loan_id>/`
 
 ---
 
-##  Business Logic
+## Business Logic
 
 ### ✅ Credit Score
+
 - Range: 300–900 based on CSV balance
 - ₹15,000 per score unit
 - Async via Celery
 
 ### ✅ Loan Rules
+
 - Min Score: 450
 - Min Income: ₹1,50,000
 - Max Loan: ₹5,000
@@ -131,6 +138,7 @@ gnome-terminal --tab -- bash -c "celery -A credit_card_system worker --loglevel=
 - EMI ≤ 20% of monthly income
 
 ### ✅ EMI & Billing
+
 - Daily interest from T+1
 - Billing cycle every 30 days
 - Due = billing date + 15 days
@@ -138,7 +146,7 @@ gnome-terminal --tab -- bash -c "celery -A credit_card_system worker --loglevel=
 
 ---
 
-##  Project Structure
+## Project Structure
 
 ```
 Django_Assign/
@@ -156,21 +164,18 @@ Django_Assign/
 
 ---
 
-##  Testing
+## Testing
 
 ```bash
 python manage.py test
 ```
 
-
-
-##  Developer Notes
+## Developer Notes
 
 - MongoDB must be running
 - Celery required for async credit score & billing
 - `credit_data.csv` must be present and updated
 
 ---
-
 
 Happy coding! 🚀
