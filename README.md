@@ -178,4 +178,4 @@ python manage.py test
 
 ---
 
-Happy coding! 🚀
+
